@@ -21,7 +21,7 @@ class Programa(models.Model):
 class Asignacion(models.Model):
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     programa = models.ForeignKey(Programa, on_delete=models.CASCADE)
-    nota = models.IntegerField()
+    nota = models.IntegerField(null=True,blank=True)
 
 class AsignacionInLine(admin.TabularInline):
     model = Asignacion

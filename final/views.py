@@ -12,14 +12,14 @@ def ingresar_pensum(request):
 
         if formulario.is_valid():
 
-            programa = Programa.objects.create(estudiante=formulario.cleaned_data['estudiante'], nombre = formulario.cleaned_data['nombre_programa'],
+            programa = Programa.objects.create(estudiante=formulario.cleaned_data['estudiante'], nombre_programa= formulario.cleaned_data['nombre_programa'],
             grado=formulario.cleaned_data['grado'], anio=formulario.cleaned_data['anio'])
 
-            for actor_id in request.POST.getlist('cursos'):
+            for curso_id in request.POST.getlist('cursos'):
 
                 asignacion = Asignacion(curso_id=curso_id, programa_id = programa.id)
 
-                actuacion.save()
+                asignacion.save()
 
             messages.add_message(request, messages.SUCCESS, 'Programa Guardada Exitosamente')
 
